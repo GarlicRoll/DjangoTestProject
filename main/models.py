@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
+
+# Create a product entity. The product must have an owner.
+# You need to add an entity to save access to the product for the user.
 class Product(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="products")
     users = models.ManyToManyField(User, related_name="accessible_products", through='ProductAccess')
@@ -19,6 +22,8 @@ class ProductAccess(models.Model):
         return f"Access for {self.user} to {self.product}"
 
 
+# Create a lesson entity. The lesson can be in several products at the same time.
+# The lesson should contain basic information: the title, the link to the video, the duration of viewing (in seconds).
 class Lesson(models.Model):
     title = models.CharField(max_length=100)
     video_url = models.URLField()
