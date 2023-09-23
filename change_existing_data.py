@@ -1,3 +1,4 @@
+import datetime
 import os
 import django
 
@@ -61,7 +62,7 @@ productAccess2.save()
 
 # Adding views to users
 
-lessonView1 = LessonView(user=users[0], lesson=lessons[0], view_time=70, viewed=False)
+lessonView1 = LessonView(user=users[0], lesson=lessons[0], view_time=70, last_view_date=datetime.date(2023, 9, 20))
 lessonView1.save()
-lessonView2 = LessonView(user=users[1], lesson=lessons[1], view_time=70, viewed=False)
+lessonView2 = LessonView(user=users[1], lesson=lessons[1], view_time=90, last_view_date=datetime.date(2023, 8, 2))
 lessonView2.save()

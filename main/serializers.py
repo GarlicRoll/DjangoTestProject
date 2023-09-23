@@ -30,8 +30,7 @@ class LessonSerializer(serializers.ModelSerializer):
 class LessonViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = LessonView
-        fields = ['id', 'user', 'lesson', 'view_time', 'viewed']
-
+        fields = ['id', 'user', 'lesson', 'view_time', 'viewed', 'last_view_date']
 
 # Auth
 class UserRegistrationSerializer(serializers.ModelSerializer):

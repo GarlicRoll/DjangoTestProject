@@ -38,7 +38,17 @@ class LessonView(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="lesson_views")
     lesson = models.ForeignKey(Lesson, on_delete=models.CASCADE, related_name="user_views")
     view_time = models.FloatField(default=0)
+    last_view_date = models.DateField(null=True, blank=True)
+
+    # The status “Viewed" is indicated if the user has viewed 80% of the video.
     viewed = models.BooleanField(default=False)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if self.view_time >= 80:
+            self.viewed = True
+        else:
+            self.viewed = False
 
     def __str__(self):
         return f"LessonView for {self.lesson} by {self.user}"
